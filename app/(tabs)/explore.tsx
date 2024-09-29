@@ -2,29 +2,21 @@ import { StyleSheet, View, Text, SafeAreaView, FlatList } from 'react-native';
 import { useEffect, useState } from 'react';
 import { User } from '../data';
 import UserCard from '@/components/UserCard';
+import useGetUsers from '@/hooks/useGetUsers';
 
 export default function TabTwoScreen() {
 
   const [error, setError] = useState(false);
   const [users, setUsers] = useState<User[]>();
+  const { getUsers } = useGetUsers();
 
-  const getUsers = async () => {
-    fetch(`https://jsonplaceholder.typicode.com/users`)
-      .then(response => response.json())
-      .then(
-        res => {
-          console.log(res);
-          setUsers(res);
-        },
-        err => {
-          console.log(err);
-          setError(true);
-        }
-      );
+  const fetchUsers = async () => {
+    const res = await getUsers();
+    setUsers(res);
   }
 
   useEffect(() => {
-    getUsers();
+    fetchUsers();
   }, []);
 
   return (

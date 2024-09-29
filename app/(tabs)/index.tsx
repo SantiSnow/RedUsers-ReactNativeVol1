@@ -1,8 +1,10 @@
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import { StyleSheet, View, Text, Button, Alert, TouchableOpacity, Image } from 'react-native';
+import { useSession } from '../../ctx';
 
 export default function HomeScreen() {
+  const { signOut } = useSession();
   const router = useRouter();
   return (
     <View style={styles.container}>
@@ -23,7 +25,22 @@ export default function HomeScreen() {
           color='#000'
         />
       </TouchableOpacity>
-      <Image />
+      
+
+      <TouchableOpacity
+        onPress={() => signOut()}
+        accessibilityLabel='Go to list'
+        style={styles.btnList}
+      >
+        <Text>
+          Logout{" "}
+        </Text>
+        <Ionicons
+          size={16}
+          name='log-out-outline'
+          color='#000'
+        />
+      </TouchableOpacity>
     </View>
   );
 }
