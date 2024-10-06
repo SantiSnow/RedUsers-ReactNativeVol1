@@ -1,10 +1,10 @@
 import { router } from 'expo-router';
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
-import { useSession } from '../ctx';
+import { useSession } from '../../ctx';
 import { useState } from 'react';
 
-export default function SignIn() {
+export default function SignIn({ stateChanger }: any) {
   const { signIn } = useSession();
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
@@ -60,6 +60,12 @@ export default function SignIn() {
           style={styles.buttonText}
         >
           Sign In
+        </Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity onPress={() => stateChanger(true)}>
+        <Text>
+          Register
         </Text>
       </TouchableOpacity>
     </View>

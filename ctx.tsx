@@ -2,13 +2,15 @@ import { useContext, createContext, type PropsWithChildren } from 'react';
 import { useStorageState } from './useStorageState';
 
 const AuthContext = createContext<{
-  signIn: (email?: any, password?: any) => boolean;
+  signIn: (email?: string, password?: string) => boolean;
   signOut: () => void;
+  register: (name?: any, email?: any, password?: any) => boolean;
   session?: string | null;
   isLoading: boolean;
 }>({
-  signIn: (email?: any, password?: any) => true,
+  signIn: (email?: string, password?: string) => true,
   signOut: () => null,
+  register: (name?: string, email?: string, password?: string) => true,
   session: null,
   isLoading: false,
 });
@@ -46,6 +48,12 @@ export function SessionProvider({ children }: PropsWithChildren) {
         },
         signOut: () => {
           setSession(null);
+        },
+        register: (name?: any, email?: any, password?: any) => {
+          //Agregar logica para registrar
+          console.log(`registered with: ${name} ${email} and ${password}`);
+          setSession('user');
+          return true;
         },
         session,
         isLoading,
