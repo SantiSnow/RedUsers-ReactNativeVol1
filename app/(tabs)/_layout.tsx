@@ -5,8 +5,8 @@ import { TabBarIcon } from '@/components/navigation/TabBarIcon';
 import { Colors } from '@/constants/Colors';
 import { useColorScheme } from '@/hooks/useColorScheme';
 import { useSession } from '../../ctx';
-import SignIn from './sing-in';
-import Register from './register';
+import SignIn from '../sing-in';
+import Register from '../register';
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();

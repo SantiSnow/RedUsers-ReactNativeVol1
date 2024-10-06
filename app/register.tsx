@@ -1,7 +1,7 @@
 import { router } from 'expo-router';
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
-import { useSession } from '../../ctx';
+import { useSession } from '../ctx';
 import { useState } from 'react';
 
 export default function Register({ stateChanger }: any) {
