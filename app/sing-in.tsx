@@ -9,9 +9,17 @@ export default function SignIn({ stateChanger }: any) {
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
   const [password, setPassword] = useState("");
+  const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
 
   const loginUser = async () => {
     const authResult = await signIn(email, password);
+
+    if (emailRegex.test(email))
+    {
+      setError("You must provide a valid email")
+      return;
+    }
+
     if (authResult) router.replace('/');
     else setError("Credentials do not match our records");
   }
@@ -30,6 +38,9 @@ export default function SignIn({ stateChanger }: any) {
             style={styles.input}
             value={email}
             onChangeText={setEmail}
+            inputMode='email'
+            autoCapitalize='none'
+            autoFocus={true}
           />
 
           <TextInput
@@ -38,6 +49,7 @@ export default function SignIn({ stateChanger }: any) {
             style={styles.input}
             value={password}
             onChangeText={setPassword}
+            caretHidden={true}
           />
         </View>
 

@@ -10,12 +10,19 @@ export default function Register({ stateChanger }: any) {
     const [email, setEmail] = useState("");
     const [error, setError] = useState("");
     const [password, setPassword] = useState("");
+    const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
 
     const registerUser = async () => {
         if (!name || !email || !password)
         {
             setError("Please, fill all the fields.");
             return false;
+        }
+
+        if (emailRegex.test(email))
+        {
+            setError("You must provide a valid email")
+            return;
         }
 
         if (password.length<8)
